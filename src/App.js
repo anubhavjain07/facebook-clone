@@ -1,36 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import 'materialize-css/dist/js/materialize'
 import './App.css';
-import { userRef } from './firebase';
-import signUp from './api/signUp';
-import signIn from './api/signIn';
+import { firebaseApp } from './firebase';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import Feed from './components/Feed';
+import Navbar from './components/reusable/Navbar'
 
 function App() {
 
-  // useEffect(() => {
-  //   function callFunc() {
-  //     userRef.push({
-  //       email: 'anu1@anu.com',
-  //       password: '12345'
-  //     })
-  //   }
-  //   callFunc();
-  // }, []);
+  const [stage, setStage] = useState('');
+  const [signUpSignIn, setsignUpSignIn] = useState('SI');
 
+  useEffect(() => {
+    firebaseApp.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        console.log('User logged in');
+        setStage('loggedIn');
+        setsignUpSignIn('SI');
+      }
+      else {
+        console.log('No User logged in');
+        setStage('notLoggedIn');
+      }
+    });
+  }, []);
 
-  const onSignUp = () => {
-    const result = signUp('anu6@anu.com', '123456', 'Anubhav', 'Jain');
-    console.log(result);
-  }
-  const onSignIn = () => {
-    const result = signIn('anu6@anu.com', '123456');
-    console.log(result);
+  const changeState = (value) => {
+    setsignUpSignIn(value);
   }
 
 
   return (
     <div className="App">
-      <button onClick={() => onSignUp()}>Sign Up</button>
-      <button onClick={() => onSignIn()}>Sign In</button>
+      <Navbar stage={stage} />
+
+      {stage === 'loggedIn' && <Feed />}
+      {stage === 'notLoggedIn' && signUpSignIn === 'SI' && <SignIn changeState={changeState} />}
+      {stage === 'notLoggedIn' && signUpSignIn === 'SU' && <SignUp changeState={changeState} />}
+
     </div>
   );
 }
