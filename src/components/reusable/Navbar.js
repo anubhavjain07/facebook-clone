@@ -4,11 +4,11 @@ import { firebaseApp } from '../../firebase';
 
 export default () => {
     return (
-        <div style={{ backgroundColor: 'royalblue' }}>
+        <div style={{ backgroundColor: "#3b5998" }}>
             <Container>
                 <Navbar
                     alignLinks="right"
-                    brand={<a className="brand-logo" href="www.google.com">Logo</a>}
+                    brand={<a className="brand-logo" style={{ fontWeight: 'bold' }} href="/">facebook</a>}
                     id="mobile-nav"
                     menuIcon={<Icon>menu</Icon>}
                     options={{

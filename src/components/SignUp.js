@@ -33,15 +33,16 @@ export default (props) => {
 
         <div style={{
             display: "flex",
-            justifyContent: 'center'
+            justifyContent: 'center',
+            backgroundColor: "#dfe3ee"
         }}>
-            <div className='outerBox'>
+            <div className='outerBox' style={{width:"400px"}}>
                 <h4>Sign Up</h4>
                 <TextInput id="firstName" label="First Name" onChange={e => onChangeText('firstName', e.target.value)} />
                 <TextInput id="lastName" label="Last Name" onChange={e => onChangeText('lastName', e.target.value)} />
                 <TextInput id="email" label="Email" onChange={e => onChangeText('email', e.target.value)} />
                 <TextInput id="password" label="Password" onChange={e => onChangeText('password', e.target.value)} />
-                <Button type="submit" waves="light" node="button" onClick={() => onSubmit()}>Sign Up</Button>
+                <Button style={{ backgroundColor: "#3b5998" }} type="submit" waves="light" node="button" onClick={() => onSubmit()}>Sign Up</Button>
 
                 <p>Already have an account ? <span onClick={() => props.changeState('SI')}>Sign In</span></p>
 
