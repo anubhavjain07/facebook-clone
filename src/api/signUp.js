@@ -1,6 +1,6 @@
 import { firebaseApp, userRef } from '../firebase';
 
-export default ({email, password, firstName, lastName}) => {
+export default ({ email, password, firstName, lastName, imageURL }) => {
 
     if (!firstName || !lastName) {
         return false;
@@ -16,7 +16,8 @@ export default ({email, password, firstName, lastName}) => {
             userRef.child(data.user.uid).set({
                 firstName,
                 lastName,
-                email
+                email,
+                imageURL
             })
             return true;
         })

@@ -9,9 +9,12 @@ export default ({ uid, firstName, lastName, imageURL, email }) => {
         imageURL: imageURL ? imageURL : ''
     })
         .then(data => {
-            return true;
+            console.log(data);
+            return data
+            
         })
         .catch(() => {
+            console.log('err')
             return false;
         });
 };

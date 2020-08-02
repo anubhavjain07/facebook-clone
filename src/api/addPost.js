@@ -6,7 +6,7 @@ export default (uid, content) => {
         postRef.push({
             createdBy: uid,
             content,
-            createdAt:new Date().toLocaleString()
+            createdAt:new Date().toUTCString()
         })
         return true;
     }

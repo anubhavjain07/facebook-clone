@@ -1,7 +1,7 @@
 import { postRef } from '../firebase';
 
 export default async () => {
-    var data
+    var data;
     await postRef.once('value', snap => {
         data = snap.val();
     });

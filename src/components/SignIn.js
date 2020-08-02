@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextInput, Button } from 'react-materialize';
+import { TextInput, Button, Container } from 'react-materialize';
 import signIn from '../api/signIn';
 
 export default (props) => {
@@ -28,6 +28,7 @@ export default (props) => {
 
 
     return (
+        <Container>
         <div style={{
             display: "flex",
             justifyContent: 'center',
@@ -35,11 +36,12 @@ export default (props) => {
         }}>
             <div className='outerBox' style={{width:"400px"}}>
                 <h4>Sign In</h4>
-                <TextInput id="email" label="Email" onChange={e => onChangeText('email', e.target.value)} />
-                <TextInput id="password" label="Password" onChange={e => onChangeText('password', e.target.value)} />
+                <TextInput email validate id="email" label="Email" onChange={e => onChangeText('email', e.target.value)} />
+                <TextInput password validate id="password" label="Password" onChange={e => onChangeText('password', e.target.value)} />
                 <Button style={{ backgroundColor: "#3b5998" }} type="submit" waves="light" node="button" onClick={() => onSubmit()}>Sign In</Button>
-                <p>Don't have an account ? <span onClick={() => props.changeState('SU')}>Sign Up</span></p>
+                <p>Don't have an account ? <span onClick={() => props.changeState('SU')} style={{ cursor: 'pointer', fontWeight: 'bold' }}>Sign Up</span></p>
             </div>
         </div>
+        </Container>
     );
 }

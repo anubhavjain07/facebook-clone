@@ -25,12 +25,14 @@ export default ({ stage }) => {
                     className="custom-navbar"
                 >
 
-                    {stage === 'loggedIn' && (<NavItem href="" onClick={(event) => {
-                        event.preventDefault()
-                        firebaseApp.auth().signOut()
-                    }}>
-                        Log Out
-                    </NavItem>)}
+                    {
+                        stage === 'loggedIn' && (<NavItem href="" onClick={(event) => {
+                            event.preventDefault()
+                            firebaseApp.auth().signOut()
+                        }}>
+                            Log Out
+                        </NavItem>)
+                    }
 
                 </Navbar>
             </Container>
