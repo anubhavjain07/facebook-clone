@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Icon } from "react-materialize";
-//import EditProfile from "./EditProfile";
+import EditProfile from "./EditProfile";
 export default ({ userDetails }) => {
     const [editMode, setEditMode] = useState(false);
 
@@ -12,10 +12,10 @@ export default ({ userDetails }) => {
         <div className="outerBox m10">
             {editMode ? (
                 <div>
-                    {/* <EditProfile
+                    <EditProfile
                         changeToFalse={changeToFalse}
                         userDetails={userDetails}
-                    /> */}
+                    />
                 </div>
             ) : (
                     <div>

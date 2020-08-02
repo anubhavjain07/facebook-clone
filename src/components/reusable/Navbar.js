@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Icon, NavItem, Container } from 'react-materialize';
 import { firebaseApp } from '../../firebase';
 
-export default () => {
+export default ({ stage }) => {
     return (
         <div style={{ backgroundColor: "#3b5998" }}>
             <Container>
@@ -10,7 +10,7 @@ export default () => {
                     alignLinks="right"
                     brand={<a className="brand-logo" style={{ fontWeight: 'bold' }} href="/">facebook</a>}
                     id="mobile-nav"
-                    menuIcon={<Icon>menu</Icon>}
+                    menuIcon={stage === 'loggedIn' && (<Icon>menu</Icon>)}
                     options={{
                         draggable: true,
                         edge: 'left',
@@ -24,12 +24,14 @@ export default () => {
                     }}
                     className="custom-navbar"
                 >
-                    <NavItem href="" onClick={(event) => {
+
+                    {stage === 'loggedIn' && (<NavItem href="" onClick={(event) => {
                         event.preventDefault()
                         firebaseApp.auth().signOut()
                     }}>
                         Log Out
-                        </NavItem>
+                    </NavItem>)}
+
                 </Navbar>
             </Container>
         </div>

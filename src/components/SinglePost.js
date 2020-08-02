@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Dropdown, Icon, Button } from "react-materialize";
 import { userRef } from "../firebase";
 import moment from "moment";
-//import deletePost from "../api/deletePost";
+import deletePost from "../api/deletePost";
 
 export default ({ details, myUID }) => {
     const [firstName, setFirstName] = useState("");
@@ -24,8 +24,8 @@ export default ({ details, myUID }) => {
 
     const onPostDelete = (event, postKey) => {
         event.preventDefault();
-        // const result = deletePost(postKey);
-        //console.log(result);
+        const result = deletePost(postKey);
+        console.log(result);
     };
 
     return (
@@ -68,43 +68,44 @@ export default ({ details, myUID }) => {
                                 </div>
                             </div>
                             {myUID === details.createdBy && (
-                                <div>
-                                    <Dropdown
-                                        options={{
-                                            alignment: "left",
-                                            autoTrigger: true,
-                                            closeOnClick: true,
-                                            constrainWidth: true,
-                                            container: null,
-                                            coverTrigger: true,
-                                            hover: false,
-                                            inDuration: 150,
-                                            onCloseEnd: null,
-                                            onCloseStart: null,
-                                            onOpenEnd: null,
-                                            onOpenStart: null,
-                                            outDuration: 250
+
+                                <Dropdown
+                                    id={details.postKey}
+                                    options={{
+                                        alignment: "left",
+                                        autoTrigger: true,
+                                        closeOnClick: true,
+                                        constrainWidth: true,
+                                        container: null,
+                                        coverTrigger: true,
+                                        hover: false,
+                                        inDuration: 150,
+                                        onCloseEnd: null,
+                                        onCloseStart: null,
+                                        onOpenEnd: null,
+                                        onOpenStart: null,
+                                        outDuration: 250
+                                    }}
+                                    trigger={
+                                        <Button flat node="button">
+                                            <Icon>more_vert</Icon>
+                                        </Button>
+                                    }
+                                >
+                                    <a href="w" style={{ color: "black" }}>
+                                        Edit
+                                            </a>
+                                    <a
+                                        href="w"
+                                        style={{ color: "black" }}
+                                        onClick={event => {
+                                            onPostDelete(event, details.postKey);
                                         }}
-                                        trigger={
-                                            <Button flat node="button">
-                                                <Icon>more_vert</Icon>
-                                            </Button>
-                                        }
                                     >
-                                        <a href="w" style={{ color: "black" }}>
-                                            Edit
-                    </a>
-                                        <a
-                                            href="w"
-                                            style={{ color: "black" }}
-                                            onClick={event => {
-                                                onPostDelete(event, details.postKey);
-                                            }}
-                                        >
-                                            Delete
-                    </a>
-                                    </Dropdown>
-                                </div>
+                                        Delete
+                                            </a>
+                                </Dropdown>
+
                             )}
                         </div>
                     </div>

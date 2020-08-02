@@ -17,3 +17,5 @@ export const userRef = firebaseApp.database().ref('users');
 
 export const postRef = firebaseApp.database().ref('posts');
 
+export const storageRef = firebaseApp.storage();
+
